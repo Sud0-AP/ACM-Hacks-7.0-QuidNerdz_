@@ -1,0 +1,11 @@
+avg_monthly_hrs,department,filed_complaint,last_evaluation,n_projects,recently_promoted,salary,satisfaction,status,tenure
+0,221,NaN,0.932868,4,NaN,low,0.829896,Left,5
+1,232,NaN,NaN,3,NaN,low,0.834544,Employed,2
+2,184,NaN,0.78883,3,NaN,medium,0.834988,Employed,3
+3,206,NaN,0.575688,4,NaN,low,0.424764,Employed,2
+4,249,NaN,0.845217,3,NaN,low,0.779043,Employed,3
+5,140,NaN,0.589097,4,NaN,medium,0.66002,Employed,2
+6,121,1,0.625399,3,NaN,low,0.835571,Employed,4
+7,150,NaN,0.644586,4,NaN,low,0.796683,Employed,3
+8,215,1,0.524114,3,NaN,medium,0.7155005,Employed,3
+9,269,NaN,0.909364,5,NaN,medium,0.994037,Employed,7
