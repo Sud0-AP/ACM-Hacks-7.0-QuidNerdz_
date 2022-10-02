@@ -1,16 +1,3 @@
-# kenesis_app
+Hello, this is team QuidNerdz and this is our project KENESIS :One stops for all human resourse manangemaent needs!
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This repository is a code submition for the hackathon MUJ Hacks 7.0 organized by ACM|Elicit 2022
