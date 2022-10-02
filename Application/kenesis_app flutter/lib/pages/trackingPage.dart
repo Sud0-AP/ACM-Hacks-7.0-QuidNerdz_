@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kenesis_app/descisionPage.dart';
+import 'package:kenesis_app/view_all_tasks.dart';
 
 class trackingPage extends StatelessWidget {
   const trackingPage({Key? key}) : super(key: key);
@@ -14,30 +16,36 @@ class trackingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                padding:
-                    EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "View all",
-                      style: GoogleFonts.jost(
-                          textStyle: const TextStyle(
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => viewTasks()));
+                },
+                child: Container(
+                  padding:
+                      EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "View all",
+                        style: GoogleFonts.jost(
+                            textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                        )),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(
+                        Icons.navigate_next_rounded,
+                        size: 30,
                         color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                      )),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.navigate_next_rounded,
-                      size: 30,
-                      color: Colors.white,
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
@@ -193,21 +201,29 @@ class trackingPage extends StatelessWidget {
                         ),
                       ),
                     ), //second instruction block
-                    Container(
-                      width: 140,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Color(0xffDFF6FF),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          "Start Tracking",
-                          style: GoogleFonts.jost(
-                              textStyle: TextStyle(
-                            color: Color(0xff256D85),
-                            fontStyle: FontStyle.italic,
-                            fontSize: 16,
-                          )),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => descisionPage()));
+                      },
+                      child: Container(
+                        width: 140,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: Color(0xffDFF6FF),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                          child: Text(
+                            "Start Tracking",
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                              color: Color(0xff256D85),
+                              fontStyle: FontStyle.italic,
+                              fontSize: 16,
+                            )),
+                          ),
                         ),
                       ),
                     ), //second instruction block

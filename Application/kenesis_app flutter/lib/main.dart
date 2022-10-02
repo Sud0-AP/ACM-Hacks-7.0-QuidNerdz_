@@ -33,50 +33,88 @@ class routeChecker extends StatefulWidget {
 }
 
 class _routeCheckerState extends State<routeChecker> {
+  String currUser = "Employee";
+
   int currentIndex = 0; //only for stful
 
   @override
   Widget build(BuildContext context) {
     final screens = [homePage(), trackingPage(), morePage()];
     return Scaffold(
-      backgroundColor: Color(0xff06283D),
-      body: screens[currentIndex],
-      bottomNavigationBar: Container(
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.shifting,
-          currentIndex: currentIndex,
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white54,
-          showUnselectedLabels: false,
-          showSelectedLabels: false,
-          iconSize: 28,
-          //to change index put
-          onTap: (index) => setState(() => currentIndex = index),
-          items: const [
-            //cannot hot reload with only 1 item need atleast 2
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-              ),
-              label: "home",
-              backgroundColor: Colors.transparent,
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.timeline,
+        backgroundColor: Color(0xff06283D),
+        body: screens[currentIndex],
+        bottomNavigationBar: currUser == "Employee"
+            ? Container(
+                child: BottomNavigationBar(
+                  type: BottomNavigationBarType.shifting,
+                  currentIndex: currentIndex,
+                  backgroundColor: Colors.white,
+                  selectedItemColor: Colors.white,
+                  unselectedItemColor: Colors.white54,
+                  showUnselectedLabels: false,
+                  showSelectedLabels: false,
+                  iconSize: 28,
+                  //to change index put
+                  onTap: (index) => setState(() => currentIndex = index),
+                  items: const [
+                    //cannot hot reload with only 1 item need atleast 2
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.home,
+                      ),
+                      label: "home",
+                      backgroundColor: Colors.transparent,
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.timeline,
+                        ),
+                        label: "stats", //can give
+                        backgroundColor: Colors.transparent),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.favorite_border,
+                        ),
+                        label: "more",
+                        backgroundColor: Colors.transparent),
+                  ],
                 ),
-                label: "stats", //can give
-                backgroundColor: Colors.transparent),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.favorite_border,
+              )
+            : Container(
+                child: BottomNavigationBar(
+                  type: BottomNavigationBarType.shifting,
+                  currentIndex: currentIndex,
+                  backgroundColor: Colors.white,
+                  selectedItemColor: Colors.white,
+                  unselectedItemColor: Colors.white54,
+                  showUnselectedLabels: false,
+                  showSelectedLabels: false,
+                  iconSize: 28,
+                  //to change index put
+                  onTap: (index) => setState(() => currentIndex = index),
+                  items: const [
+                    //cannot hot reload with only 1 item need atleast 2
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.home,
+                      ),
+                      label: "home",
+                      backgroundColor: Colors.transparent,
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.timeline,
+                        ),
+                        label: "stats", //can give
+                        backgroundColor: Colors.transparent),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.favorite_border,
+                        ),
+                        label: "more",
+                        backgroundColor: Colors.transparent),
+                  ],
                 ),
-                label: "more",
-                backgroundColor: Colors.transparent),
-          ],
-        ),
-      ),
-    );
+              ));
   }
 }

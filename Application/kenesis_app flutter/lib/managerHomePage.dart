@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kenesis_app/managerHomePage.dart';
+import 'package:kenesis_app/showEmployee.dart';
 import 'package:kenesis_app/view_all_tasks.dart';
 
-class homePage extends StatelessWidget {
-  homePage({Key? key}) : super(key: key);
+class managerHomePage extends StatelessWidget {
+  managerHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     int task_left = 6;
 
     int totalTask = 10;
+
+    int assignedTasks = 21;
 
     return Scaffold(
       backgroundColor: const Color(0xff06283D),
@@ -21,61 +23,74 @@ class homePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  child: topBar(),
-                  padding: EdgeInsets.only(right: 30, left: 30),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    child: topBar(),
+                    padding: EdgeInsets.only(right: 30, left: 30),
+                  ),
                 ),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => viewTasks()));
                   },
-                  child: Center(
-                    child: Container(
-                      width: 320,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff47B5FF),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Tasks",
-                                  style: GoogleFonts.jost(
-                                      textStyle: TextStyle(
-                                    color: Colors.white.withOpacity(0.7),
-                                    fontStyle: FontStyle.italic,
-                                    fontSize: 20,
-                                  )),
-                                ),
-                                Text(
-                                  "$task_left/$totalTask tasks",
-                                  style: GoogleFonts.jost(
-                                      textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 24,
-                                  )),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              height: 55,
-                              width: 55,
-                              child: Image.asset(
-                                "assets/images/checklist.png",
-                                fit: BoxFit.cover,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => showEmployees()));
+                    },
+                    child: Center(
+                      child: Container(
+                        width: 320,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            color: const Color(0xff47B5FF),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 30),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Assigned Tasks",
+                                    style: GoogleFonts.jost(
+                                        textStyle: TextStyle(
+                                      color: Colors.white.withOpacity(0.7),
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 20,
+                                    )),
+                                  ),
+                                  Text(
+                                    "$assignedTasks",
+                                    style: GoogleFonts.jost(
+                                        textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 24,
+                                    )),
+                                  ),
+                                ],
                               ),
-                            )
-                          ],
+                              Container(
+                                height: 55,
+                                width: 55,
+                                child: Image.asset(
+                                  "assets/images/checklist.png",
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -84,7 +99,10 @@ class homePage extends StatelessWidget {
                 const SizedBox(
                   height: 35,
                 ),
-                const toDoSectionHome(),
+                const ongoingSectionManagerHome(),
+                const SizedBox(
+                  height: 20,
+                ),
                 const completedTaskSection()
               ],
             ),
@@ -101,9 +119,9 @@ class topBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String name_of_user = "Sachin";
-    String current_time_of_day = "Morning";
-    String user_image = 'assets/images/sachinNew.jpg';
+    String name_of_user = "Sarah";
+    String current_time_of_day = "Afternoon";
+    String user_image = 'assets/images/manager.jpg';
     String logoImg = "assets/images/logo2.jpg";
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -118,21 +136,15 @@ class topBar extends StatelessWidget {
                   alignment: FractionalOffset.topCenter, fit: BoxFit.cover),
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => managerHomePage()));
-            },
-            child: Container(
-              padding: EdgeInsets.all(8), // Border width
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: SizedBox.fromSize(
-                  size: Size.square(55), // Image radius
-                  child: Image.asset("$logoImg", fit: BoxFit.cover),
-                ),
+          Container(
+            padding: EdgeInsets.all(8), // Border width
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: SizedBox.fromSize(
+                size: Size.square(55), // Image radius
+                child: Image.asset("$logoImg", fit: BoxFit.cover),
               ),
             ),
           ), //Settings
@@ -171,17 +183,20 @@ class topBar extends StatelessWidget {
 //********************************************************************//
 
 ////******************** TODOSECTION ******************************************//
-class toDoSectionHome extends StatefulWidget {
-  const toDoSectionHome({Key? key}) : super(key: key);
+class ongoingSectionManagerHome extends StatefulWidget {
+  const ongoingSectionManagerHome({Key? key}) : super(key: key);
 
   @override
-  State<toDoSectionHome> createState() => _toDoSectionHomeState();
+  State<ongoingSectionManagerHome> createState() =>
+      _ongoingSectionManagerHomeState();
 }
 
-class _toDoSectionHomeState extends State<toDoSectionHome> {
+class _ongoingSectionManagerHomeState extends State<ongoingSectionManagerHome> {
   int no_of_tasks_left = 4;
 
-  var taskObj = {
+  int no_of_ongoing_tasks = 9;
+
+  var taskObj2 = {
     "employee_name": "",
     "task_name": "",
     "task_deadline": "",
@@ -190,10 +205,10 @@ class _toDoSectionHomeState extends State<toDoSectionHome> {
 
   @override
   Widget build(BuildContext context) {
-    taskObj["employee_name"] = "Mehar";
-    taskObj["task_name"] = "Talk to Sanket";
-    taskObj["employee_id"] = "1203948";
-    taskObj["task_deadline"] = "Due tommorow";
+    taskObj2["employee_name"] = "Mehar";
+    taskObj2["task_name"] = "Talk to Sanket";
+    taskObj2["employee_id"] = "1203948";
+    taskObj2["task_deadline"] = "Due tommorow";
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,7 +218,7 @@ class _toDoSectionHomeState extends State<toDoSectionHome> {
           child: Row(
             children: [
               Text(
-                "To do",
+                "Ongoing",
                 style: GoogleFonts.jost(
                     textStyle: TextStyle(
                   color: Colors.white,
@@ -222,7 +237,7 @@ class _toDoSectionHomeState extends State<toDoSectionHome> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                     child: Text(
-                  "$no_of_tasks_left",
+                  "3",
                   style: GoogleFonts.jost(
                       textStyle: const TextStyle(
                           color: Colors.white,
@@ -245,203 +260,180 @@ class _toDoSectionHomeState extends State<toDoSectionHome> {
               const SizedBox(
                 width: 30,
               ),
-              Stack(children: [
-                Container(
-                  height: 135,
-                  width: 170,
-                  decoration: BoxDecoration(
-                    color: Color(0xffDFF6FF),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        left: 12, top: 10, right: 12, bottom: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Talk to sangeeta",
-                          style: GoogleFonts.jost(
-                            textStyle: TextStyle(
-                                color: Color(0xff47B5FF),
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
-                          ),
+              Column(
+                children: [
+                  Stack(children: [
+                    Container(
+                      height: 135,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        color: Color(0xffDFF6FF),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            left: 12, top: 10, right: 12, bottom: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Talk to sangeeta",
+                              style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Color(0xff47B5FF),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Due Tommorow",
+                              style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.black.withOpacity(0.7),
+                                    fontSize: 15,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Due Tommorow",
-                          style: GoogleFonts.jost(
-                            textStyle: TextStyle(
-                                color: Colors.black.withOpacity(0.7),
-                                fontSize: 15,
-                                fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Positioned(
-                    top: 5,
-                    right: 5,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      radius: 15,
-                    )),
-              ]),
+                    Positioned(
+                        top: 5,
+                        right: 5,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 15,
+                        )),
+                  ]),
+                  Text(
+                    "Sachin Singh",
+                    style: GoogleFonts.jost(
+                        textStyle: TextStyle(color: Colors.white)),
+                  )
+                ],
+              ),
               const SizedBox(
                 width: 25,
               ),
-              Stack(children: [
-                Container(
-                  height: 135,
-                  width: 170,
-                  decoration: BoxDecoration(
-                    color: Color(0xffDFF6FF),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        left: 12, top: 10, right: 12, bottom: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Work on splash",
-                          style: GoogleFonts.jost(
-                            textStyle: const TextStyle(
-                                color: Color(0xff47B5FF),
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
-                          ),
+              Column(
+                children: [
+                  Stack(children: [
+                    Container(
+                      height: 135,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        color: Color(0xffDFF6FF),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            left: 12, top: 10, right: 12, bottom: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Meet with john",
+                              style: GoogleFonts.jost(
+                                textStyle: const TextStyle(
+                                    color: Color(0xff47B5FF),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Due in 2 days",
+                              style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.black.withOpacity(0.7),
+                                    fontSize: 15,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Due 4th Oct",
-                          style: GoogleFonts.jost(
-                            textStyle: TextStyle(
-                                color: Colors.black.withOpacity(0.7),
-                                fontSize: 15,
-                                fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                const Positioned(
-                    top: 5,
-                    right: 5,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.yellow,
-                      radius: 15,
-                    )),
-              ]),
+                    const Positioned(
+                        top: 5,
+                        right: 5,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.yellow,
+                          radius: 15,
+                        )),
+                  ]),
+                  Text(
+                    "Hemant Sanghvi",
+                    style: GoogleFonts.jost(
+                        textStyle: TextStyle(color: Colors.white)),
+                  )
+                ],
+              ),
               const SizedBox(
                 width: 25,
               ),
-              Stack(children: [
-                Container(
-                  height: 135,
-                  width: 170,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffDFF6FF),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        left: 12, top: 10, right: 12, bottom: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Meet with sanket",
-                          style: GoogleFonts.jost(
-                            textStyle: const TextStyle(
-                                color: Color(0xff47B5FF),
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
-                          ),
+              Column(
+                children: [
+                  Stack(children: [
+                    Container(
+                      height: 135,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffDFF6FF),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            left: 12, top: 10, right: 12, bottom: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Work on splash",
+                              style: GoogleFonts.jost(
+                                textStyle: const TextStyle(
+                                    color: Color(0xff47B5FF),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Due tommorow",
+                              style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.black.withOpacity(0.7),
+                                    fontSize: 15,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Due 4th Oct",
-                          style: GoogleFonts.jost(
-                            textStyle: TextStyle(
-                                color: Colors.black.withOpacity(0.7),
-                                fontSize: 15,
-                                fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                const Positioned(
-                    top: 5,
-                    right: 5,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.yellow,
-                      radius: 15,
-                    )),
-              ]),
-              const SizedBox(
-                width: 25,
+                    const Positioned(
+                        top: 5,
+                        right: 5,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 15,
+                        )),
+                  ]),
+                  Text(
+                    "Sachin Singh",
+                    style: GoogleFonts.jost(
+                        textStyle: TextStyle(color: Colors.white)),
+                  )
+                ],
               ),
-              Stack(children: [
-                Container(
-                  height: 135,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffDFF6FF),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        left: 12, top: 10, right: 12, bottom: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Create new skyle model",
-                          style: GoogleFonts.jost(
-                            textStyle: const TextStyle(
-                                color: Color(0xff47B5FF),
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Due 21st Oct",
-                          style: GoogleFonts.jost(
-                            textStyle: TextStyle(
-                                color: Colors.black.withOpacity(0.7),
-                                fontSize: 15,
-                                fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const Positioned(
-                    top: 5,
-                    right: 5,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.green,
-                      radius: 15,
-                    )),
-              ]),
               const SizedBox(
                 width: 25,
               ),
@@ -472,6 +464,7 @@ class _completedTaskSectionState extends State<completedTaskSection> {
           padding: EdgeInsets.only(right: 30, left: 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Completed",
